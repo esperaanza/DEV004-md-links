@@ -1,4 +1,4 @@
-import mdLinks from '../index';
+import { mdLinks }from '../index';
 
 
 describe('mdLinks', () => {
