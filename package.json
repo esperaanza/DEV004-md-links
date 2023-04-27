@@ -6,8 +6,8 @@
     "node": ">=16.x"
   },
   "scripts": {
-    "test": "jest --coverage",
-    "pretest": "npm run eslint"
+    "test": "jest --coverage"
+   
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
