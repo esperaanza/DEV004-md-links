@@ -4,10 +4,15 @@
   "env": {
     "node": true
   },
-  "globals": { "Promise": "readonly" },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+  // "globals": { "Promise": "readonly" },
+  // "extends": "eslint:recommended",
+  // "parserOptions": {
+  //   "ecmaVersion": 2018,
+  //   
+  // },
+  
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    }
   }
-}
