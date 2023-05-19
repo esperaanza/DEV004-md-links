@@ -1,5 +1,6 @@
 import { existsSync, statSync, readdirSync, readFileSync, readFile } from "fs";
 import { isAbsolute, resolve, extname, join } from "path";
+import chalk from "chalk";
 import fetch from "node-fetch";
 // modulo jsom para recrear y manipular objetos en el DOM
 import jsdom from "jsdom";
@@ -52,7 +53,7 @@ const readFiles = (link) =>
         });
     });
 
-const getLinks = (link) =>
+export const getLinks = (link) =>
     new Promise((resolve, reject) => {
         const links = [];
         readFiles(link)
@@ -161,8 +162,8 @@ export const validateLink = (arrayAllLinks) => {
                 if (result) {
                 return {
                     link,
-                    status: result.status,
-                    message: result.statusText ? 'OK' : 'FAIL',
+                    status: chalk.green(result.status),
+                    message: chalk.green('OK'),
                 }
             }
             
@@ -177,39 +178,3 @@ export const validateLink = (arrayAllLinks) => {
 }
 // prueba de desarrollo
 getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md').then(((res) => (validateLink(res).then(((resolve) => console.log(resolve))))));
-
-// funcion para --stats --validate
-// const statsValidate = (arrayAllLinks) => {
-//     // creo una constante que guarde todos los liks que estan rotos
-//     // los filtra por el estatus que sea == a FAIL
-//     const broken = arrayAllLinks.filter((link) => link.status == 'FAIL').length;
-//     // regresa un objeto con el total de los links rotos
-//     return {
-//         total: arrayAllLinks.length,
-//         // creamos un new Set para almacenar cuantos son los valores únicos que filtramos del arayAllLinks
-//         // usamos .size para traer el numero
-//         unique: new Set(arrayAllLinks.map((link) => link.href)).size,
-//         // mostramos el numero de los links que estan rotos
-//         broken: broken
-//     }
-// }
-
-// // funcion para --stats
-// const stats = (arrayAllLinks) => {
-//     return {
-//         // traemos el numero total de todos los links del arrayAllLinks
-//         total: arrayAllLinks.length,
-//         // creamos un new Set para almacenar cuantos son los valores únicos que filtramos del arayAllLinks
-//         // usamos .size para traer el numero
-//         unique: new Set(arrayAllLinks.map((link) => link.href)).size,
-//     }
-// }
-
-// // funcion para --validate
-// const validate = (arrayPromises) => {
-//     // del array que tenemos de promesas lo filtramos para traer la informacion de los links
-//     return arrayPromises.map((link) => {
-//         // mostramos el archivo, el link, el mensaje, el estatus, y el texto
-//         return `${link.file} ${link.href} ${link.message} ${link.status} ${link.text}`
-//     })
-// }
