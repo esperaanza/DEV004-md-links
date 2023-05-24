@@ -2,28 +2,28 @@ import { existsPath, absolutePath, getMdFiles, getLinks, validateLink } from './
 
 //*inputs path y options
 const mdLinks = (path, options) => {
-    //creo una nueva promesa
+
     return new Promise((resolve, reject) => {
-        // Identificar si la ruta existe
+
         if (existsPath(path)) {
-            // Si no es ruta absoluta, convertirla en absoluta
+
             const absPath = absolutePath(path)
-            // Checar si es un solo archivo o directorio y filtrar archivos .md llamando a funcion getMdFiles
+
             const mdFilesArr = getMdFiles(absPath);
-            // Si hay mas de un archivo .md recorrerlos 
+
             if (mdFilesArr.length >= 1) {
-                // Leer archivos .md y extraer los links
+
                 const linksArr = getLinks(absPath);
-                // si hay mas de un link y se cumple la opcion de validar es true
+
                 if (linksArr.length >= 1 && options.validate == true) {
-                    // resuelve aplicando la funcion validateLink a todos los links del array
+
                     resolve((validateLink(linksArr)))
-                    // si hay mas de un link y la opcion de validar es falsa O nula
+
                 } else if (linksArr.length >= 1 && (options.validate != true || options == null)) {
-                    // resuelve aplicando la funcion de getAllLinks a los paths absolutos y me muestra solo el array de links
+
                     resolve((getLinks(absPath)))
                 }
-                // cuando el array sea igual a 0 manda el error que no encontro links
+
                 else if (linksArr.length == 0) {
                     reject('ERROR: NO PATH FOUND')
                 }
@@ -32,14 +32,40 @@ const mdLinks = (path, options) => {
     })
 }
 
-// prueba de desarrollo para cuando option. validate es true
+//prueba de desarrollo para cuando option. validate es true
 mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', { validate: true })
     .then((resolve) => { console.log(resolve) })
     .catch((error) => { console.log(error) });
 
+// const mdLinks = (path, options) => {
+//     return new Promise((resolve, reject) => {
+//         if (existsPath(path)) {
+//             const absPath = absolutePath(path);
+//             const mdFilesArr = getMdFiles(absPath);
+
+//             if (mdFilesArr.length >= 1) {
+//                 const linksArr = getLinks(absPath);
+
+//                 if (linksArr.length >= 1 && options.validate === true) {
+//                     validateLink(linksArr)
+//                         .then((validatedLinks) => resolve(validatedLinks))
+//                         .catch((error) => reject(error));
+//                 } else if (linksArr.length >= 1 && (!options.validate || options.validate === false)) {
+//                     resolve(linksArr);
+//                 } else if (linksArr.length === 0) {
+//                     reject('ERROR: NO PATH FOUND');
+//                 }
+//             }
+//         }
+//     });
+// };
 
 
-    //* funcion para --stats --validate
+// mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', { validate: false})
+//     .then((resolve) => { console.log(resolve) })
+//     .catch((error) => { console.log(error) });
+    
+//* funcion para --stats --validate
 const statsValidate = (arrayAllLinks) => {
     // creo una constante que guarde todos los liks que estan rotos
     // los filtra por el estatus que sea == a FAIL
@@ -73,4 +99,7 @@ const validate = (arrayPromises) => {
         // mostramos el archivo, el link, el mensaje, el estatus, y el texto
         return `${link.file} ${link.href} ${link.message} ${link.status} ${link.text}`
     })
+}
+export{
+    mdLinks, statsValidate, stats, validate
 }

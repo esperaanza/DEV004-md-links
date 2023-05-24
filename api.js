@@ -2,25 +2,18 @@ import { existsSync, statSync, readdirSync, readFileSync, readFile } from "fs";
 import { isAbsolute, resolve, extname, join } from "path";
 import chalk from "chalk";
 import fetch from "node-fetch";
-// modulo jsom para recrear y manipular objetos en el DOM
-import jsdom from "jsdom";
-// constructor de jsom con propiedades
-const { JSDOM } = jsdom;
-// modulo markdown it convertir texto escrito en formato HTML
-import md from "markdown-it";
-import MarkdownIt from "markdown-it"
-import parse  from "markdown-ast";
+
 export const existsPath = (link) => existsSync(link);
 
 export const absolutePath = (link) => (isAbsolute(link) ? link : resolve(link));
 
 export const isFile = (link) => statSync(link).isFile();
 
-export const isDirectory = (link) => statSync(link).isDirectory();
+const isDirectory = (link) => statSync(link).isDirectory();
 
-export const readDir = (link) => readdirSync(link);
+const readDir = (link) => readdirSync(link);
 
-export const extensionMd = (link) => extname(link) === ".md";
+const extensionMd = (link) => extname(link) === ".md";
 
 export const getMdFiles = (link) => {
     let mdArrayFiles = [];
@@ -38,9 +31,9 @@ export const getMdFiles = (link) => {
 
     return mdArrayFiles;
 };
-console.log(
-    getMdFiles("C:/Users/Esperanza/proyecto/DEV004-md-links/Directory")
-);
+// console.log(
+//     getMdFiles("C:/Users/Esperanza/proyecto/DEV004-md-links/Directory")
+// );
 
 const readFiles = (link) =>
     new Promise((resolve, reject) => {
@@ -73,9 +66,9 @@ export const getLinks = (link) =>
             .catch((error) => reject(error));
     });
 
-getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md')
-    .then((res) => console.log('los link md', res))
-    .catch((error) => console.error(error));
+// getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md')
+//     .then((res) => console.log('los link md', res))
+//     .catch((error) => console.error(error));
 // C:/Users/Esperanza/proyecto/DEV004-md-links/Directory
 // C:/Users/Esperanza/proyecto/DEV004-md-links/README.md
 
@@ -162,8 +155,8 @@ export const validateLink = (arrayAllLinks) => {
                 if (result) {
                 return {
                     link,
-                    status: chalk.green(result.status),
-                    message: chalk.green('OK'),
+                    status: result.status,
+                    message:'OK',
                 }
             }
             
@@ -177,4 +170,4 @@ export const validateLink = (arrayAllLinks) => {
     return Promise.all(arrayPromises);
 }
 // prueba de desarrollo
-getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md').then(((res) => (validateLink(res).then(((resolve) => console.log(resolve))))));
+// getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md').then(((res) => (validateLink(res).then(((resolve) => console.log(resolve))))));
