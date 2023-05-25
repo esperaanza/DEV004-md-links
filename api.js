@@ -169,5 +169,5 @@ export const validateLink = (arrayAllLinks) => {
         }))
     return Promise.all(arrayPromises);
 }
-// prueba de desarrollo
-// getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md').then(((res) => (validateLink(res).then(((resolve) => console.log(resolve))))));
+//prueba de desarrollo
+getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md').then(((res) => (validateLink(res).then(((resolve) => console.log(resolve))))));
