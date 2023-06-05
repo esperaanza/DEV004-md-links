@@ -1,6 +1,11 @@
-# Markdown Links
+<p align="center">
+<h1 style="color:pink;">Markdown Links</h1>
+</p>
+<p align="center">
+  <img src="./thumb.png">
+</p>
 
-## Índice
+## Contenido
 
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
@@ -17,46 +22,9 @@
 
 ## 1. Preámbulo
 
-[Markdown](https://es.wikipedia.org/wiki/Markdown) es un lenguaje de marcado
-ligero muy popular entre developers. Es usado en muchísimas plataformas que
-manejan texto plano (GitHub, foros, blogs, ...) y es muy común
-encontrar varios archivos en ese formato en cualquier tipo de repositorio
-(empezando por el tradicional `README.md`).
-
-Estos archivos `Markdown` normalmente contienen _links_ (vínculos/ligas) que
-muchas veces están rotos o ya no son válidos y eso perjudica mucho el valor de
-la información que se quiere compartir. 
-
-Dentro de una comunidad de código abierto, nos han propuesto crear una
-herramienta usando [Node.js](https://nodejs.org/), que lea y analice archivos
-en formato `Markdown`, para verificar los links que contengan y reportar
-algunas estadísticas. Por ejemplo en Laboratoria podrían usar esta 
-herramienta para detectar los links rotos en los readmes de los proyectos
-o en un área de facturación verificar los links rotos de una factura dígital.
-
-![md-links](https://user-images.githubusercontent.com/110297/42118443-b7a5f1f0-7bc8-11e8-96ad-9cc5593715a6.jpg)
-
+ Markdown es un lenguaje de marcado ligero muy usado en plataformas de texto plano como GitHub, blogs y foros. Se propone crear una herramienta en Node.js para leer archivos Markdown, verificar los links que contienen y reportar estadísticas. Esto sería útil para detectar links rotos en proyectos o facturas digitales. La herramienta buscaría y validaría los links, generando informes sobre su validez. Así se mejoraría la calidad de la información compartida y se facilitaría la corrección de enlaces rotos.
 ## 2. Resumen del proyecto
 
-En este proyecto crearás una herramienta de línea de comando (CLI) así como tu
-propia librería (o biblioteca - library) en JavaScript.
-
-En esta oportunidad **nos alejamos del navegador** para construir un
-programa que se ejecutará en la terminal usando Node.js. La forma en la que interactuaras con esta aplicación es mediante comandos 
-que tu diseñaras/programaras por la terminal/shell. Aprenderemos sobre procesos
-(`process.env`, `process.argv`, ...), cómo interactuar con el sistema archivos,
-cómo hacer consultas/peticiones HTTP, etc.
-
-[Node.js](https://nodejs.org/es/) es un entorno de ejecución para JavaScript
-construido con el [motor de JavaScript V8 de Chrome](https://developers.google.com/v8/).
-Esto nos va a permitir ejecutar JavaScript en el entorno del sistema operativo,
-ya sea tu máquina o un servidor, lo cual nos abre las puertas para poder
-interactuar con el sistema en sí, archivos, redes, ...
-
-Diseñar tu propia librería es una experiencia fundamental para cualquier
-desarrollador porque que te obliga a pensar en la interfaz (API) de tus
-_módulos_ y cómo será usado por otros developers. Debes tener especial
-consideración en peculiaridades del lenguaje, convenciones y buenas prácticas.
 
 ## 3. Objetivos de aprendizaje
 
@@ -64,207 +32,83 @@ Reflexiona y luego marca los objetivos que has llegado a entender y aplicar en t
 
 ### JavaScript
 
-- [ ] **Diferenciar entre tipos de datos primitivos y no primitivos**
+- ✔️ **Diferenciar entre tipos de datos primitivos y no primitivos**
 
-- [ ] **Arrays (arreglos)**
+- ✔️ **Arrays (arreglos)**
 
-  <details><summary>Links</summary><p>
+- ✔️ **Objetos (key, value)**
 
-  * [Arreglos](https://curriculum.laboratoria.la/es/topics/javascript/04-arrays)
-  * [Array - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/)
-  * [Array.prototype.sort() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
-  * [Array.prototype.forEach() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-  * [Array.prototype.map() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
-  * [Array.prototype.filter() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
-  * [Array.prototype.reduce() - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
-</p></details>
+- ✔️ **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
+ 
+- ✔️ **Funciones (params, args, return)**
 
-- [ ] **Objetos (key, value)**
+- ✔️ **Recursión o recursividad**
 
-  <details><summary>Links</summary><p>
+- ✔️ **Módulos de CommonJS**
+ 
+- ✔️ **Diferenciar entre expresiones (expressions) y sentencias (statements)**
 
-  * [Objetos en JavaScript](https://curriculum.laboratoria.la/es/topics/javascript/05-objects/01-objects)
-</p></details>
+- ✔️ **Callbacks**
 
-- [ ] **Uso de condicionales (if-else, switch, operador ternario, lógica booleana)**
+- ✔️ **Promesas**
 
-  <details><summary>Links</summary><p>
+- ✔️ **Pruebas unitarias (unit tests)**
+  
+- ✔️ **Pruebas asíncronas**
 
-  * [Estructuras condicionales y repetitivas](https://curriculum.laboratoria.la/es/topics/javascript/02-flow-control/01-conditionals-and-loops)
-  * [Tomando decisiones en tu código — condicionales - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/conditionals)
-</p></details>
+- ✔️ **Uso de mocks y espías**
 
-- [ ] **Funciones (params, args, return)**
+- ✔️ **Pruebas de compatibilidad en múltiples entornos de ejecución**
 
-  <details><summary>Links</summary><p>
+- ✔️ **Uso de linter (ESLINT)**
 
-  * [Funciones (control de flujo)](https://curriculum.laboratoria.la/es/topics/javascript/02-flow-control/03-functions)
-  * [Funciones clásicas](https://curriculum.laboratoria.la/es/topics/javascript/03-functions/01-classic)
-  * [Arrow Functions](https://curriculum.laboratoria.la/es/topics/javascript/03-functions/02-arrow)
-  * [Funciones — bloques de código reutilizables - MDN](https://developer.mozilla.org/es/docs/Learn/JavaScript/Building_blocks/Functions)
-</p></details>
-
-- [ ] **Recursión o recursividad**
-
-  <details><summary>Links</summary><p>
-
-  * [Píldora recursión - YouTube Laboratoria Developers](https://www.youtube.com/watch?v=lPPgY3HLlhQ)
-  * [Recursión o Recursividad - Laboratoria Developers en Medium](https://medium.com/laboratoria-developers/recursi%C3%B3n-o-recursividad-ec8f1a359727)
-</p></details>
-
-- [ ] **Módulos de CommonJS**
-
-  <details><summary>Links</summary><p>
-
-  * [Modules: CommonJS modules - Node.js Docs](https://nodejs.org/docs/latest/api/modules.html)
-</p></details>
-
-- [ ] **Diferenciar entre expresiones (expressions) y sentencias (statements)**
-
-- [ ] **Callbacks**
-
-  <details><summary>Links</summary><p>
-
-  * [Función Callback - MDN](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
-</p></details>
-
-- [ ] **Promesas**
-
-  <details><summary>Links</summary><p>
-
-  * [Promise - MDN](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-  * [How to Write a JavaScript Promise - freecodecamp (en inglés)](https://www.freecodecamp.org/news/how-to-write-a-javascript-promise-4ed8d44292b8/)
-</p></details>
-
-- [ ] **Pruebas unitarias (unit tests)**
-
-  <details><summary>Links</summary><p>
-
-  * [Empezando con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/getting-started)
-</p></details>
-
-- [ ] **Pruebas asíncronas**
-
-  <details><summary>Links</summary><p>
-
-  * [Tests de código asincrónico con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/asynchronous)
-</p></details>
-
-- [ ] **Uso de mocks y espías**
-
-  <details><summary>Links</summary><p>
-
-  * [Manual Mocks con Jest - Documentación oficial](https://jestjs.io/docs/es-ES/manual-mocks)
-</p></details>
-
-- [ ] **Pruebas de compatibilidad en múltiples entornos de ejecución**
-
-- [ ] **Uso de linter (ESLINT)**
-
-- [ ] **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
+- ✔️ **Uso de identificadores descriptivos (Nomenclatura y Semántica)**
 
 ### Node.js
 
-- [ ] **Instalar y usar módulos con npm**
+- ✔️ **Instalar y usar módulos con npm**
 
-  <details><summary>Links</summary><p>
+- ✔️ **Configuración de package.json**
 
-  * [Sitio oficial de npm (en inglés)](https://www.npmjs.com/)
-</p></details>
+- ✔️ **Configuración de npm-scripts**
 
-- [ ] **Configuración de package.json**
+- ✔️ **process (env, argv, stdin-stdout-stderr, exit-code)**
 
-  <details><summary>Links</summary><p>
+- ✔️ **File system (fs, path)**
 
-  * [package.json - Documentación oficial (en inglés)](https://docs.npmjs.com/files/package.json)
-</p></details>
-
-- [ ] **Configuración de npm-scripts**
-
-  <details><summary>Links</summary><p>
-
-  * [scripts - Documentación oficial (en inglés)](https://docs.npmjs.com/misc/scripts)
-</p></details>
-
-- [ ] **process (env, argv, stdin-stdout-stderr, exit-code)**
-
-  <details><summary>Links</summary><p>
-
-  * [Process - Documentación oficial (en inglés)](https://nodejs.org/api/process.html)
-</p></details>
-
-- [ ] **File system (fs, path)**
-
-  <details><summary>Links</summary><p>
-
-  * [File system - Documentación oficial (en inglés)](https://nodejs.org/api/fs.html)
-  * [Path - Documentación oficial (en inglés)](https://nodejs.org/api/path.html)
-</p></details>
 
 ### Control de Versiones (Git y GitHub)
 
-- [ ] **Git: Instalación y configuración**
+- ✔️ **Git: Instalación y configuración**
 
-- [ ] **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
+- ✔️ **Git: Control de versiones con git (init, clone, add, commit, status, push, pull, remote)**
 
-- [ ] **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
+- ✔️ **Git: Integración de cambios entre ramas (branch, checkout, fetch, merge, reset, rebase, tag)**
 
-- [ ] **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
+- ✔️ **GitHub: Creación de cuenta y repos, configuración de llaves SSH**
 
-- [ ] **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
+- ✔️ **GitHub: Colaboración en Github (branches | forks | pull requests | code review | tags)**
 
-- [ ] **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
+- ✔️ **GitHub: Organización en Github (projects | issues | labels | milestones | releases)**
 
 ### HTTP
 
-- [ ] **Consulta o petición (request) y respuesta (response).**
+- ✔️ **Consulta o petición (request) y respuesta (response).**
 
-  <details><summary>Links</summary><p>
-
-  * [Generalidades del protocolo HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Overview)
-  * [Mensajes HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Messages)
-</p></details>
-
-- [ ] **Códigos de status de HTTP**
-
-  <details><summary>Links</summary><p>
-
-  * [Códigos de estado de respuesta HTTP - MDN](https://developer.mozilla.org/es/docs/Web/HTTP/Status)
-  * [The Complete Guide to Status Codes for Meaningful ReST APIs - dev.to](https://dev.to/khaosdoctor/the-complete-guide-to-status-codes-for-meaningful-rest-apis-1-5c5)
-</p></details>
+- ✔️ **Códigos de status de HTTP**
 
 ## 4. Consideraciones generales
 
-* Este proyecto se debe "resolver" de manera individual.
+Cree una herramienta usando Node.js, que lee y analiza archivos en formato Markdown, para verificar los links que contengan y reportar algunas estadísticas.
+### Tecnologías usadas para la realización de este proyecto
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" > <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" >
+ <img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" >
+ <img src="https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white" >
+ <img src = "https://camo.githubusercontent.com/fbc3df79ffe1a99e482b154b29262ecbb10d6ee4ed22faa82683aa653d72c4e1/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4769744875622d3130303030303f7374796c653d666f722d7468652d6261646765266c6f676f3d676974687562266c6f676f436f6c6f723d7768697465">
+ <img src="https://camo.githubusercontent.com/55037e0ff8e2c9df84ad631c3d0443a7316776ede7459a5872ccb336d7df2781/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f6e706d2d4342333833373f7374796c653d666f722d7468652d6261646765266c6f676f3d6e706d266c6f676f436f6c6f723d7768697465">
+ <img src="https://camo.githubusercontent.com/42ada9cc774b9d2b4cf35691820a881d70657ae42c3a074f00c7e9add6352361/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f56697375616c5f53747564696f5f436f64652d3030373844343f7374796c653d666f722d7468652d6261646765266c6f676f3d76697375616c25323073747564696f253230636f6465266c6f676f436f6c6f723d7768697465">
+ <img src="https://user-images.githubusercontent.com/113950323/216749349-af362b16-0109-482c-881d-af3103ad9cbe.png">
 
-* El rango de tiempo estimado para completar el proyecto es de 4 a 5 Sprints.
-
-* La **librería** y el **script ejecutable** (herramienta de línea de comando -
-  CLI) deben estar implementados en JavaScript para ser ejecutados con
-  Node.js. **Está permitido usar librerías externas**.
-
-* Tu módulo **debe ser instalable** via `npm install <github-user>/md-links`. Este
-  módulo debe incluir tanto un _ejecutable_ que podamos invocar en la línea de
-  comando como una interfaz que podamos importar con `require` para usarlo
-  programáticamente.
-  
- * Recomendamos usar la libreria [chalk](https://www.npmjs.com/package/chalk) para personalizar
- el estilo de tu aplicación en la terminal.
-
-* Los **tests unitarios** deben cubrir un mínimo del 70% de _statements_,
-  _functions_, _lines_ y _branches_. Te recomendamos explorar [Jest](https://jestjs.io/)
-  para tus pruebas unitarias.
-
-* Para este proyecto **no está permitido** utilizar `async/await`.
-
-* Para este proyecto te sugerimos **no utilizar** la versión síncrona
-de la función para leer archivos, `readFileSync`, y en cambio intentar
-resolver este desafío de manera asíncrona.
-
-* Para este proyecto es **recomendado** el uso de ES Modules `(import/export)`, en lugar de commonJS `(require/module.exports)`.
-
-* Para disminuir la complejidad de tu algoritmo recursivo, te recomendamos
-utilizar la versión síncrona de la función para leer directorios, `readdirSync`.
 
 ## 5. Criterios de aceptación mínimos del proyecto
 
@@ -423,253 +267,4 @@ Unique: 3
 Broken: 1
 ```
 
-## 6. Entregables
 
-Módulo instalable via `npm install <github-user>/md-links`. Este módulo debe
-incluir tanto **un ejecutable** como **una interfaz** que podamos importar con `require`
-para usarlo programáticamente.
-
-## 7. Hacker edition
-
-Las secciones llamadas _Hacker Edition_ son **opcionales**. Si **terminaste**
-con todo lo anterior y te queda tiempo, intenta completarlas. Así podrás
-profundizar y/o ejercitar más sobre los objetivos de aprendizaje del proyecto.
-
-* Puedes agregar la propiedad `line` a cada objeto `link` indicando en qué línea
-  del archivo se encontró el link.
-* Puedes agregar más estadísticas.
-* Integración continua con Travis o Circle CI.
-
-***
-
-## 8. Pistas, tips y lecturas complementarias
-
-### FAQs
-
-#### ¿Cómo hago para que mi módulo sea _instalable_ desde GitHub?
-
-Para que el módulo sea instalable desde GitHub solo tiene que:
-
-* Estar en un repo público de GitHub
-* Contener un `package.json` válido
-
-Con el comando `npm install githubname/reponame` podemos instalar directamente
-desde GitHub. Ver [docs oficiales de `npm install` acá](https://docs.npmjs.com/cli/install).
-
-Por ejemplo, el [`course-parser`](https://github.com/Laboratoria/course-parser)
-que usamos para la currícula no está publicado en el registro público de NPM,
-así que lo instalamos directamente desde GitHub con el comando `npm install
-Laboratoria/course-parser`.
-
-### Sugerencias de implementación
-
-La implementación de este proyecto tiene varias partes: leer del sistema de
-archivos, recibir argumentos a través de la línea de comando, analizar texto,
-hacer consultas HTTP, ... y todas estas cosas pueden enfocarse de muchas formas,
-tanto usando librerías como implementando en VanillaJS.
-
-Por poner un ejemplo, el _parseado_ (análisis) del markdown para extraer los
-links podría plantearse de las siguientes maneras (todas válidas):
-
-* Usando un _módulo_ como [markdown-it](https://github.com/markdown-it/markdown-it),
-  que nos devuelve un arreglo de _tokens_ que podemos recorrer para identificar
-  los links.
-* Siguiendo otro camino completamente, podríamos usar
-  [expresiones regulares (`RegExp`)](https://developer.mozilla.org/es/docs/Web/JavaScript/Guide/Regular_Expressions).
-* También podríamos usar una combinación de varios _módulos_ (podría ser válido
-  transformar el markdown a HTML usando algo como [marked](https://github.com/markedjs/marked)
-  y de ahí extraer los link con una librería de DOM como [JSDOM](https://github.com/jsdom/jsdom)
-  o [Cheerio](https://github.com/cheeriojs/cheerio) entre otras).
-* Usando un _custom renderer_ de [marked](https://github.com/markedjs/marked)
-  (`new marked.Renderer()`).
-
-No dudes en consultar a tus compañeras y coaches
-si tienes dudas existenciales con respecto a estas decisiones. No existe una
-"única" manera correcta :wink:
-
-### Tutoriales / NodeSchool workshoppers
-
-* [learnyounode](https://github.com/workshopper/learnyounode)
-* [how-to-npm](https://github.com/workshopper/how-to-npm)
-* [promise-it-wont-hurt](https://github.com/stevekane/promise-it-wont-hurt)
-
-### Otros recursos
-
-* [Crear diagramas de flujo](https://app.diagrams.net/)
-* [ESModules en package.json](https://blog.logrocket.com/es-modules-in-node-today/)
-* [Acerca de Node.js - Documentación oficial](https://nodejs.org/es/about/)
-* [Node.js file system - Documentación oficial](https://nodejs.org/api/fs.html)
-* [Node.js http.get - Documentación oficial](https://nodejs.org/api/http.html#http_http_get_options_callback)
-* [Node.js - Wikipedia](https://es.wikipedia.org/wiki/Node.js)
-* [What exactly is Node.js? - freeCodeCamp](https://medium.freecodecamp.org/what-exactly-is-node-js-ae36e97449f5)
-* [¿Qué es Node.js y para qué sirve? - drauta.com](https://www.drauta.com/que-es-nodejs-y-para-que-sirve)
-* [¿Qué es Nodejs? Javascript en el Servidor - Fazt en YouTube](https://www.youtube.com/watch?v=WgSc1nv_4Gw)
-* [¿Simplemente qué es Node.js? - IBM Developer Works, 2011](https://www.ibm.com/developerworks/ssa/opensource/library/os-nodejs/index.html)
-* [Node.js y npm](https://www.genbeta.com/desarrollo/node-js-y-npm)
-* [Módulos, librerías, paquetes, frameworks... ¿cuál es la diferencia?](http://community.laboratoria.la/t/modulos-librerias-paquetes-frameworks-cual-es-la-diferencia/175)
-* [Asíncronía en js](https://carlosazaustre.es/manejando-la-asincronia-en-javascript)
-* [NPM](https://docs.npmjs.com/getting-started/what-is-npm)
-* [Publicar packpage](https://docs.npmjs.com/getting-started/publishing-npm-packages)
-* [Crear módulos en Node.js](https://docs.npmjs.com/getting-started/publishing-npm-packages)
-* [Leer un archivo](https://nodejs.org/api/fs.html#fs_fs_readfile_path_options_callback)
-* [Leer un directorio](https://nodejs.org/api/fs.html#fs_fs_readdir_path_options_callback)
-* [Path](https://nodejs.org/api/path.html)
-* [Linea de comando CLI](https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e)
-
-
-## 9. Checklist
-
-### General
-
-* [ ] Puede instalarse via `npm install --global <github-user>/md-links`
-
-### `README.md`
-
-* [ ] Un board con el backlog para la implementación de la librería.
-* [ ] Documentación técnica de la librería.
-* [ ] Guía de uso e instalación de la librería
-
-### API `mdLinks(path, opts)`
-
-* [ ] El módulo exporta una función con la interfaz (API) esperada.
-* [ ] Implementa soporte para archivo individual
-* [ ] Implementa soporte para directorios
-* [ ] Implementa `options.validate`
-
-### CLI
-
-* [ ] Expone ejecutable `md-links` en el path (configurado en `package.json`)
-* [ ] Se ejecuta sin errores / output esperado
-* [ ] Implementa `--validate`
-* [ ] Implementa `--stats`
-
-### Pruebas / tests
-
-* [ ] Pruebas unitarias cubren un mínimo del 70% de statements, functions,
-  lines, y branches.
-* [ ] Pasa tests (y linters) (`npm test`).
-
-## 10. Achicando el problema
-
-Un "superpoder" que esperamos puedas desarrollar durante el bootcamp
-es el de definir "mini-proyectos" que te acerquen paso a paso a
-la solución del "gran proyecto". Es el equivalente a comenzar armando
-esquinas o bordes del rompecabezas/puzzle sin saber necesariamente
-cómo encajarán al final. Déjate llevar y explora.
-
-Estas son algunas sugerencias:
-
-### Empieza con un diagrama de flujo
-
-Este proyecto es distinto de los que has venido trabajando hasta ahora
-dado que no hay una interfaz web, todo se desarrollará en tu editor y
-consola/terminal.
-
-Es por ello que, para visualizar mejor lo que tendrás que hacer
-y planificar tus tareas y objetivos, es recomendable hacer un
-`diagrama de flujo`.
-
-Si nunca has hecho un diagrama de flujo revisa este [recurso](https://www.youtube.com/watch?v=Lub5qOmY4JQ).
-
-Una alternativa al diagrama de flujo puede ser el `pseudocódigo`.
-
-### Planificación
-
-En este proyecto te recomendamos usar la herramienta de planificación
-y organización de GitHub llamada **Github Projects**.
-
-Mediante **issues** y **milestones** podrás organizar y planificar
-tareas y objetivos concretos.
-
-Tomando en consideración los **entregables** del proyecto, el
-[9. Checklist](#9-checklist) y los **pasos** que definiste en tu
-`diagrama de flujo`, crea tu planificación en GitHub Projects.
-
-### Antes de codear
-
-En esta ocasión estarás trabajando en **NodeJS**, asegúrate
-de saber para qué sirve y sus consideraciones.
-
-En particular, deberás decidir desde un comienzo si usarás
-`ES Modules`, es decir, **import/export**, ó, por el contrario,
-`CommonJS Modules`, es decir, **require/module.exports**.
-
-Asegurate de tener clara esta decisión desde un inicio para
-que no encuentres problemas más adelante.
-
-### Lee un archivo
-
-Como primer reto, puedes tratar de leer un solo archivo con
-una ruta fija e imprimir su contenido en la consola con un `console.log`.
-
-La librería nativa `FS` (FileSystem) te será de utilidad.
-
-**Recuerda**: Te sugerimos **no utilizar** la versión síncrona
-de la función para leer archivos, `readFileSync`, y en cambio
-intentar resolver ese desafío de manera asíncrona.
-
-### Averigua la extensión de un archivo
-
-Ya sabiendo leer un archivo, aventúrate a conocer cual
-es su extensión.
-
-Recuerda, las extensiones son esas letras al final del
-nombre de un archivo, por ejemplo: .js, .txt, .doc, etc
-
-Aquí también podrá ser útil `FS`.
-
-### Obtén el contenido de un directorio
-
-Este proyecto consiste en buscar archivos, pero para eso,
-primero debes poder verlos.
-
-Intenta imprimir en consola la lista de archivos en una carpeta.
-
-La librería `FS` también te será útil aquí.
-
-**Recuerda**: Para disminuir la complejidad de tu algoritmo
-recursivo, te recomendamos utilizar la versión síncrona de
-la función para leer directorios, `readdirSync`.
-
-### Une dos rutas
-
-Para poder acceder a carpetas y archivos será necesario que
-indiques en qué lugar de tu computadora se encuentran, a esto
-le llamamos **rutas**.
-
-Usa la librería nativa `path` para unir dos segmentos de ruta,
-por ejemplo, si queremos unir:
-
-1) /home/Laboratoria/
-2) ./test
-
-El resultado sería: /home/Laboratoria/test
-
-### Recursividad
-
-Este proyecto se ha de resolver de forma casi natural con
-**recursividad**.
-
-¿Por qué?.
-
-Porque no conocemos realmente cuantas carpetas y archivos
-tendremos que recorrer antes de terminar.
-
-Si recibes una ruta de carpeta, no sabrás de ante mano si
-dentro hay más carpetas o muchos archivos.
-
-Por ello, asegurate bien de entender de qué trata la
-recursividad y ver algunos ejemplos.
-
-Entre los recursos de este proyecto hay un video que te ayudará.
-
-### Crea una promesa
-
-El valor de retorno de nuestra librería es una `Promesa`,
-no un `Array`.
-
-Prueba leyendo sobre las promesas y creando una por tu
-cuenta utilizando **new Promise()**
-
-Es importante que sepas qué es un **callback** pues las
-promesas los utilizarán.
