@@ -1,187 +1,105 @@
-import { existsSync, readFile, readdirSync, statSync } from 'fs';
-import { resolve, extname, isAbsolute } from 'path';
-import chalk from 'chalk';
-import { promisify } from 'util';
+import { existsPath, absolutePath, getMdFiles, getLinks, validateLink } from './api.js'
 
-// valida si existe la ruta
-const validatePath = (path) => existsSync(path);
+//*inputs path y options
+const mdLinks = (path, options) => {
 
-// ver si la ruta es absoluta, si es relativa se convierte
-const resolveRelativePath = (path) => {
-  if (isAbsolute(path)) {
-    return path;
-  } else {
-    return resolve(path);
-  }
-};
+    return new Promise((resolve, reject) => {
 
-// valida si es directorio
-const validateDirectory = (absolutePath) => statSync(absolutePath).isDirectory();
+        if (existsPath(path)) {
 
-// valida si es un archivo md
-const validateMDFile = (filePath) => extname(filePath) === '.md';
+            const absPath = absolutePath(path)
 
-// lee el archivo y busca los links
-const readFileAndSearchLinks = (filePath) => {
-  const promisifiedReadFile = promisify(readFile);
-  return promisifiedReadFile(filePath, 'utf-8').then((result) => {
-    console.log({ filePath, result });
-  }).catch((err) => {
-    console.error(err);
-    throw err;
-  });
-};
+            const mdFilesArr = getMdFiles(absPath);
 
-// lista archivos del directorio
-const listFilesFromDirectory = (absolutePath) => {
-  const files = readdirSync(absolutePath);
-  const promises = files.map((file) => {
-    const path = `${absolutePath}/${file}`;
-    if (validateDirectory(path)) {
-      return listFilesFromDirectory(path);
-    } else if (validateMDFile(path)) {
-      return readFileAndSearchLinks(path);
-    } else {
-      return Promise.resolve();
+            if (mdFilesArr.length >= 1) {
+
+                const linksArr = getLinks(absPath);
+
+                if (linksArr.length >= 1 && options.validate == true) {
+
+                    resolve((validateLink(linksArr)))
+
+                } else if (linksArr.length >= 1 && (options.validate != true || options == null)) {
+
+                    resolve((getLinks(absPath)))
+                }
+
+                else if (linksArr.length == 0) {
+                    reject('ERROR: NO PATH FOUND')
+                }
+            }
+        }
+    })
+}
+
+//prueba de desarrollo para cuando option. validate es true
+mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', { validate: true })
+    .then((resolve) => { console.log(resolve) })
+    .catch((error) => { console.log(error) });
+
+// const mdLinks = (path, options) => {
+//     return new Promise((resolve, reject) => {
+//         if (existsPath(path)) {
+//             const absPath = absolutePath(path);
+//             const mdFilesArr = getMdFiles(absPath);
+
+//             if (mdFilesArr.length >= 1) {
+//                 const linksArr = getLinks(absPath);
+
+//                 if (linksArr.length >= 1 && options.validate === true) {
+//                     validateLink(linksArr)
+//                         .then((validatedLinks) => resolve(validatedLinks))
+//                         .catch((error) => reject(error));
+//                 } else if (linksArr.length >= 1 && (!options.validate || options.validate === false)) {
+//                     resolve(linksArr);
+//                 } else if (linksArr.length === 0) {
+//                     reject('ERROR: NO PATH FOUND');
+//                 }
+//             }
+//         }
+//     });
+// };
+
+
+// mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', { validate: false})
+//     .then((resolve) => { console.log(resolve) })
+//     .catch((error) => { console.log(error) });
+    
+//* funcion para --stats --validate
+const statsValidate = (arrayAllLinks) => {
+    // creo una constante que guarde todos los liks que estan rotos
+    // los filtra por el estatus que sea == a FAIL
+    const broken = arrayAllLinks.filter((link) => link.status == 'FAIL').length;
+    // regresa un objeto con el total de los links rotos
+    return {
+        total: arrayAllLinks.length,
+        // creamos un new Set para almacenar cuantos son los valores únicos que filtramos del arayAllLinks
+        // usamos .size para traer el numero
+        unique: new Set(arrayAllLinks.map((link) => link.href)).size,
+        // mostramos el numero de los links que estan rotos
+        broken: broken
     }
-  });
-  return Promise.all(promises);
-};
+}
 
-export const mdLinks = (path, options) => {
-  return new Promise((resolve, reject) => {
-    if (!validatePath(path)) {
-      reject(new Error('Invalid path'));
-      return;
+//* funcion para --stats
+const stats = (arrayAllLinks) => {
+    return {
+        // traemos el numero total de todos los links del arrayAllLinks
+        total: arrayAllLinks.length,
+        // creamos un new Set para almacenar cuantos son los valores únicos que filtramos del arayAllLinks
+        // usamos .size para traer el numero
+        unique: new Set(arrayAllLinks.map((link) => link.href)).size,
     }
-    console.log('Path exists');
-    const absolutePath = resolveRelativePath(path);
-    console.log('Path absolute', absolutePath);
-    if (validateDirectory(absolutePath)) {
-      console.log(chalk.bgHex('#69FF63').bold('is directory'));
-      listFilesFromDirectory(absolutePath).then(() => {
-        resolve('OK directory');
-      }).catch((err) => {
-        reject(err);
-      });
-    } else if (validateMDFile(absolutePath)) {
-      console.log('is md file');
-      readFileAndSearchLinks(absolutePath).then(() => {
-        resolve('OK file');
-      }).catch((err) => {
-        reject(err);
-      });
-    } else {
-      reject(new Error('Invalid path'));
-    }
-  });
-};
+}
 
-const path = '/Users/Esperanza/proyecto/DEV004-md-links';
-mdLinks(path)
-  .then((result) => console.log(result))
-  .catch((error) => console.log(error));
-
-  // import { resolve, extname, isAbsolute } from 'path';
-// import chalk from 'chalk';
-
-
-// // valida si existe la ruta
-// const validatePath = (path) => existsSync(path);
-
-//  // ver si la ruta es absoluta, si es relativa se convierte
-// const resolveRelativePath = (path) => {
-//    if(isAbsolute(path)) /* <is absolute path?> */ {
-//     return path;
-//    } else {
-//     return resolve(path);
-//    }
-// }
-// //valida si es directorio
-// const validateDirectory = (absolutePath) => statSync(absolutePath).isDirectory();
-
-// //valida si es un archivo md
-// const validateMDFile = (filePath) => extname(filePath) === ".md"; 
-
-// //lee el archivo y busca los links
-// const readFileAndSearchLinks = (filePath) => {
-//   readFile(filePath, 'utf-8', (err, result) => {
-//     if (err) {
-//       console.error(err);
-//       return;
-//     } else {
-//       console.log({filePath, result})
-//     }
-//   })
-// }
-// //lista archivos del directorio
-// const listFilesFromDirectory = (absolutePath) => {
-//      const files = readdirSync(absolutePath) 
-//      files.forEach(file => {
-//        const path = `${absolutePath}/${file}` // concatenamos el path del directorio con el nombre del archivo/directorio
-//       if(validateDirectory(path)){
-//         listFilesFromDirectory(path); // recursividad
-//       } else if (validateMDFile(path)) { // si es md se lee el archivo
-//         readFileAndSearchLinks(path)
-//       } 
-//   })
-// }
-
-// export const mdLinks = (path, options) => {
-//   return new Promise((resolve, reject) => { 
-//     if (!validatePath(path)) /* <Path exists> */ {
-//       reject(new Error('dont exist path'));
-//       return;
-//     } 
-//     console.log('path exists');
-//     const absolutePath = resolveRelativePath(path); /* <is abosolute path?> */
-//     console.log('path absolute', absolutePath);
-
-//       // probar si es un directorio o un archivo
-//     if(validateDirectory(absolutePath)) /* <is directory?> */ {
-//       console.log(chalk.bgHex('#69FF63').bold('is directory    '));
-//        //leemos directorio
-//        listFilesFromDirectory(absolutePath);
-//        resolve('ok directory')
-//     } else if(validateMDFile(absolutePath)) /*<is md?>*/ {
-//       console.log('is md file');
-//       resolve('ok file')
-//     } else {
-//       reject('invalid path');
-//     }
-//   })
-// }
-// const path = '/Users/Esperanza/proyecto/DEV004-md-links';
-
-
-
-// mdLinks(path) // consumiendo la promesa
-// .then(result => console.log(result))
-// .catch(error => console.log(error))
-
-
-
-// import { resolve as _resolve, isAbsolute as _isAbsolute } from 'path';
-// import { existsSync } from 'fs';
-
-// export function mdLinks(route) {
-//   return new Promise((resolve, reject) => {
-//     let absolutePath = _resolve(route);
-//     let isAbsolute = _isAbsolute(absolutePath);
-//     let isExisting = existsSync(absolutePath);
-//     let result;
-
-//     if (!isExisting) {
-//       result = 'La ruta no existe';
-//     } else if (isAbsolute) {
-//       result = 'Ruta absoluta';
-//     } else {
-//       result = 'Ruta relativa';
-//     }
-//     console.log (resolve(result));
-//     console.log('hola')
-//   });
-// // }
-// mdLinks('C:\Users\Esperanza\proyecto\DEV004-md-links\README.md')
-//   .then(result => console.log(result))
-//   .catch(error => console.error(error));
+//* funcion para --validate
+const validate = (arrayPromises) => {
+    // del array que tenemos de promesas lo filtramos para traer la informacion de los links
+    return arrayPromises.map((link) => {
+        // mostramos el archivo, el link, el mensaje, el estatus, y el texto
+        return `${link.file} ${link.href} ${link.message} ${link.status} ${link.text}`
+    })
+}
+export{
+    mdLinks, statsValidate, stats, validate
+}
