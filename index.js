@@ -31,13 +31,13 @@ const mdLinks = (path, options) => {
 };
 
 // Prueba de desarrollo para cuando option.validate es true
-mdLinks('C:\\Users\\Esperanza\\proyecto\\DEV004-md-links\\Directory\\README.md', { validate: false })
-    .then((resolve) => {
-        console.log(resolve);
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+// mdLinks('C:\\Users\\Esperanza\\proyecto\\DEV004-md-links\\Directory\\README.md', { validate: false })
+//     .then((resolve) => {
+//         console.log(resolve);
+//     })
+//     .catch((error) => {
+//         console.log(error);
+//     });
 
 
 //* funcion para --stats --validate

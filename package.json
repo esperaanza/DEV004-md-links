@@ -1,6 +1,7 @@
 {
-  "name": "md-links",
-  "version": "0.1.0",
+  "name": "md-links_enc",
+  "version": "1.0.0",
+  "main": "./cli.js",
   "type": "module",
   "engines": {
     "node": ">=16.x"

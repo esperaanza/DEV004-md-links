@@ -13,19 +13,19 @@ import fetch from 'node-fetch';
 // import axios from 'axios'; 
 // funcion para ver si la ruta existe, es asincrona
 const existsPath = (link) => { return (existsSync(link)) };
-console.log(existsPath('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory'));
+// console.log(existsPath('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory'));
 
 // funcion para ver si la ruta es absoulta, si no lo es convertimos 
 const absolutePath = (link) => {  return (isAbsolute(link)) ? link : resolve(link) };
-console.log(absolutePath('Directory'));
+// console.log(absolutePath('Directory'));
 
 // funcion para ver si es un archivo 
 const isFile = (link) => { return statSync(link).isFile(); };
-console.log(isFile('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory'));
+// console.log(isFile('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory'));
 
 // funcion para ver si es un directorio
 const isDirectory = (link) => { return statSync(link).isDirectory(); };
-console.log(isFile('C:\\Users\\Esperanza\\proyecto\\DEV004-md-links\\Directory'));
+// console.log(isFile('C:\\Users\\Esperanza\\proyecto\\DEV004-md-links\\Directory'));
 
 // funcion para ver si es directorio
 const readDir = (link) => { return (readdirSync(link)) };
@@ -62,7 +62,7 @@ const getMdFiles = (link) => {
   }
   return mdArrayFiles;
 }
-console.log(getMdFiles('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory'));
+// console.log(getMdFiles('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory'));
 
 const readFiles = (link) => new Promise((resolve, reject) => {
   readFile(link, 'utf-8', (err, data) => {
@@ -137,7 +137,7 @@ const validateLink = (arrayAllLinks) => {
 // .then((res) => validateLink(res))
 // .then((resolve) => console.log(resolve));
 
- 
+
 
 
 
@@ -168,13 +168,13 @@ const mdLinks = (path, options) => {
 }
 
 // prueba de desarrollo para cuando option. validate es true
-mdLinks('C:\\Users\\Esperanza\\proyecto\\DEV004-md-links\\Directory\\README.md', '')
-  .then((resolve) => {
-    console.log(resolve);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// mdLinks('C:\\Users\\Esperanza\\proyecto\\DEV004-md-links\\Directory\\README.md', '')
+//   .then((resolve) => {
+//     console.log(resolve);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 
 // //?prueba de desarrollo para cuando option. validate es diferente a true O nula

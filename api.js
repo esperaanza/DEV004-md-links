@@ -76,7 +76,8 @@ export const validateLink = (arrayAllLinks) => {
         .then((result) => {
                 if (result) {
                 return {
-                    link,
+                    Href: link.href,
+                    Text:link.text,
                     status: result.status,
                     message:'OK',
                 }

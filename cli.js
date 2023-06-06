@@ -126,7 +126,7 @@ const cli = (path, option) => {
 }
 
 // llamamos a la funcion
-cli(path,option)
+cli('C:\\Users\\Esperanza\\proyecto\\DEV004-md-links\\Directory\\README.md',option)
 
 
 
