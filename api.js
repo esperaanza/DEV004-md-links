@@ -1,6 +1,5 @@
-import { existsSync, statSync, readdirSync, readFileSync, readFile } from "fs";
+import { existsSync, statSync, readdirSync, readFile } from "fs";
 import { isAbsolute, resolve, extname, join } from "path";
-import chalk from "chalk";
 import fetch from "node-fetch";
 
 export const existsPath = (link) => existsSync(link);
@@ -66,84 +65,7 @@ export const getLinks = (link) =>
             .catch((error) => reject(error));
     });
 
-// getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md')
-//     .then((res) => console.log('los link md', res))
-//     .catch((error) => console.error(error));
-// C:/Users/Esperanza/proyecto/DEV004-md-links/Directory
-// C:/Users/Esperanza/proyecto/DEV004-md-links/README.md
 
-// const getLinks = (link) => {
-//     return new Promise((resolve, reject) => {
-//         readFiles(link)
-//             .then((data) => {
-//                 const md = new MarkdownIt();
-//                 const tokens = md.parse(data, {});
-
-//                 const links = tokens
-//                     .filter((token) => token.type === 'inline' && token.tag === 'a')
-//                     .map((token) => ({
-//                         href: token.attrs[0][1],
-//                         text: token.children[0].content,
-//                         file: link,
-//                     }));
-
-//                 resolve(links);
-//             })
-//             .catch((error) => {
-//                 reject(error);
-//             });
-//     });
-// };
-
-// getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md')
-//     .then((links) => {
-//         console.log('Los enlaces MD son:', links);
-//     })
-//     .catch((error) => {
-//         console.error(error);
-//     });
-
-// const getLinks = (link) => {
-//     return new Promise((resolve, reject) => {
-//         readFiles(link)
-//             .then((data) => {
-//                 const ast = parse(data);
-
-//                 const links = [];
-
-//                 const findLinks = (node) => {
-//                     if (node.type === 'link') {
-//                         links.push({
-//                             href: node.url,
-//                             text: node.text,
-//                             file: link,
-//                         });
-//                     }
-
-//                     if (node.children) {
-//                         node.children.forEach((child) => {
-//                             findLinks(child);
-//                         });
-//                     }
-//                 };
-
-//                 findLinks(ast);
-
-//                 resolve(links);
-//             })
-//             .catch((error) => {
-//                 reject(error);
-//             });
-//     });
-// };
-
-// getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md')
-//     .then((links) => {
-//         console.log('Los enlaces MD son:', links);
-//     })
-//     .catch((error) => {
-//         console.error(error);
-//     });
 
 // funcion para validar los links
 export const validateLink = (arrayAllLinks) => {
@@ -170,4 +92,4 @@ export const validateLink = (arrayAllLinks) => {
     return Promise.all(arrayPromises);
 }
 //prueba de desarrollo
-getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md').then(((res) => (validateLink(res).then(((resolve) => console.log(resolve))))));
+// getLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md').then(((res) => (validateLink(res).then(((resolve) => console.log(resolve))))));

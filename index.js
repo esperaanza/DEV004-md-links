@@ -4,13 +4,10 @@ import { existsPath, absolutePath, getMdFiles, getLinks, validateLink } from './
 const mdLinks = (path, options) => {
 
     return new Promise((resolve, reject) => {
-
         if (existsPath(path)) {
-
             const absPath = absolutePath(path)
-
             const mdFilesArr = getMdFiles(absPath);
-
+                        console.log(mdFilesArr);
             if (mdFilesArr.length >= 1) {
 
                 const linksArr = getLinks(absPath);
@@ -19,7 +16,8 @@ const mdLinks = (path, options) => {
 
                     resolve((validateLink(linksArr)))
 
-                } else if (linksArr.length >= 1 && (options.validate != true || options == null)) {
+                } 
+                  if (linksArr.length >= 1 && (options.validate != true || options == null)) {
 
                     resolve((getLinks(absPath)))
                 }
@@ -32,36 +30,8 @@ const mdLinks = (path, options) => {
     })
 }
 
-//prueba de desarrollo para cuando option. validate es true
-mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', { validate: true })
-    .then((resolve) => { console.log(resolve) })
-    .catch((error) => { console.log(error) });
-
-// const mdLinks = (path, options) => {
-//     return new Promise((resolve, reject) => {
-//         if (existsPath(path)) {
-//             const absPath = absolutePath(path);
-//             const mdFilesArr = getMdFiles(absPath);
-
-//             if (mdFilesArr.length >= 1) {
-//                 const linksArr = getLinks(absPath);
-
-//                 if (linksArr.length >= 1 && options.validate === true) {
-//                     validateLink(linksArr)
-//                         .then((validatedLinks) => resolve(validatedLinks))
-//                         .catch((error) => reject(error));
-//                 } else if (linksArr.length >= 1 && (!options.validate || options.validate === false)) {
-//                     resolve(linksArr);
-//                 } else if (linksArr.length === 0) {
-//                     reject('ERROR: NO PATH FOUND');
-//                 }
-//             }
-//         }
-//     });
-// };
-
-
-// mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', { validate: false})
+//prueba de desarrollo para cuando option
+// mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', { validate: null})
 //     .then((resolve) => { console.log(resolve) })
 //     .catch((error) => { console.log(error) });
     

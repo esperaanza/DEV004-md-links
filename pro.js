@@ -239,9 +239,9 @@ const mdLinks = (path, options) => {
 }
 
 // prueba de desarrollo para cuando option. validate es true
-mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', {validate : true})
-.then((resolve) => { console.log(resolve)})
-.catch((error) => { console.log(error)});
+// mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', {validate : true})
+// .then((resolve) => { console.log(resolve)})
+// .catch((error) => { console.log(error)});
 
 // //?prueba de desarrollo para cuando option. validate es diferente a true O nula
 // mdLinks('C:/Users/Esperanza/proyecto/DEV004-md-links/Directory/README.md', '')
