@@ -48,7 +48,7 @@ const instructions = () => {
 }
 
 const msnHelp = () => {
-    msn1('Help Zone')
+    msn1(' Help ')
     log(green('We are here to help you remember the commands:\n'));
     log(greenB('"--validate" or "--v"               -->  displays an array with links and status \n'));
     log(greenB('"--stats" or "--s"                  -->  displays total and unique links \n '));
@@ -124,8 +124,9 @@ const cli = (path, option) => {
         return
     }
 }
+
 // llamamos a la funcion
-cli(path, option)
+cli(path,option)
 
 
 

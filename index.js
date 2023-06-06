@@ -1,40 +1,45 @@
-import { existsPath, absolutePath, getMdFiles, getLinks, validateLink } from './api.js'
+import { existsPath, absolutePath, getMdFiles, getLinks, validateLink, isFile } from './api.js'
 
 //*inputs path y options
 const mdLinks = (path, options) => {
-
     return new Promise((resolve, reject) => {
-        if (existsPath(path)) {
-            const absPath = absolutePath(path)
-            const mdFilesArr = getMdFiles(absPath);
-                        console.log(mdFilesArr);
-            if (mdFilesArr.length >= 1) {
-
-                const linksArr = getLinks(absPath);
-
-                if (linksArr.length >= 1 && options.validate == true) {
-
-                    resolve((validateLink(linksArr)))
-
-                } 
-                  if (linksArr.length >= 1 && (options.validate != true || options == null)) {
-
-                    resolve((getLinks(absPath)))
-                }
-
-                else if (linksArr.length == 0) {
-                    reject('ERROR: NO PATH FOUND')
-                }
-            }
+        if (!existsPath(path)) {
+            reject('ERROR: Path does not exist');
+            return;
         }
-    })
-}
 
-//prueba de desarrollo para cuando option
-// mdLinks('Users/Esperanza/proyecto/DEV004-md-links/Directory', { validate: null})
-//     .then((resolve) => { console.log(resolve) })
-//     .catch((error) => { console.log(error) });
-    
+        const absPath = absolutePath(path);
+        if (!isFile(absPath)) {
+            reject('ERROR: Not a file');
+            return;
+        }
+
+        getLinks(absPath)
+            .then((linksArr) => {
+                if (linksArr.length >= 1 && options.validate === true) {
+                    validateLink(linksArr)
+                        .then((validatedLinks) => resolve(validatedLinks))
+                        .catch((error) => reject(error));
+                } else if (linksArr.length >= 1 && (options.validate !== true || options == null)) {
+                    resolve(linksArr);
+                } else if (linksArr.length === 0) {
+                    reject('ERROR: No links found');
+                }
+            })
+            .catch((error) => reject(error));
+    });
+};
+
+// Prueba de desarrollo para cuando option.validate es true
+mdLinks('C:\\Users\\Esperanza\\proyecto\\DEV004-md-links\\Directory\\README.md', { validate: false })
+    .then((resolve) => {
+        console.log(resolve);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+
 //* funcion para --stats --validate
 const statsValidate = (arrayAllLinks) => {
     // creo una constante que guarde todos los liks que estan rotos
@@ -70,6 +75,6 @@ const validate = (arrayPromises) => {
         return `${link.file} ${link.href} ${link.message} ${link.status} ${link.text}`
     })
 }
-export{
+export {
     mdLinks, statsValidate, stats, validate
 }
